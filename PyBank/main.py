@@ -12,7 +12,10 @@ profitLosses = []
 totalNumOfMonths = 0
 totalPrfitLost = 0
 maxLoss = 0
+maxLossDate = ""
 maxProfit = 0
+maxProfitDate = ""
+
 
 # Set path for file
 csvpath = os.path.join(".", "Resources", "budget_data.csv")
@@ -27,7 +30,7 @@ with open(csvpath, newline="") as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+    #print(f"CSV Header: {csv_header}")
 
     # Loop through looking for the video
     for row in csvreader:
@@ -42,12 +45,28 @@ with open(csvpath, newline="") as csvfile:
         #print(str(row[0]))
         ####print(f'profigLosses: {row[1]}')
 
-    print(dates)
-    print(profitLosses)
-    print(f"{len(dates)}")
+        totalPrfitLost = float(totalPrfitLost) + float(row[1])
+
+        #if float(row[1]) > 0 && float(row[1]) > float(maxProfit):
+        if float(row[1]) > float(maxProfit):
+            maxProfit = float(row[1])
+            maxProfitDate = str(row[0])
+
+        elif float(row[1]) < float(maxLoss):
+            maxLoss = float(row[1])
+            maxLossDate = str(row[0])
+
+    #print(dates)
+    #print(profitLosses)
+    #print(f"{len(dates)}")
 
     totalNumOfMonths=len(dates)
-    print(f'{totalNumOfMonths}')
+    print(f'Total Months: {totalNumOfMonths}')
+    print(f'Total: ${totalPrfitLost}')
+    print(f'Great Increase in Profits: {str(maxProfitDate)} (${float(maxProfit)})')
+    #print(f'{float(maxProfit)}')
+    print(f'Greatest Decrease in Profits: {str(maxLossDate)} (${float(maxLoss)})')
+    #print(f'{float(maxLoss)}')
 
 
 
