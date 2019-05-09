@@ -69,9 +69,9 @@ with open(csvpath, newline="") as csvfile:
     #averageChange = float(totalLoss)/float(totalNumOfMonths)
     
 
-    print(f'Total Months: {totalNumOfMonths}')
-    print(f'Total: ${totalPrfitLoss}')
-    print(f'Average Change: ${averageChange}')
+    print(f'Total Months: {int(totalNumOfMonths)}')
+    print(f'Total: ${int(totalPrfitLoss)}')
+    print(f'Average Change: ${int(averageChange)}')
     # print(f'{float(totalLoss)}')
     print(f'Great Increase in Profits: {str(maxProfitDate)} (${float(maxProfit)})')
 
