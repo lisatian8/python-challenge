@@ -180,7 +180,7 @@ with open(output_path, 'w', newline='') as csvfile:
     # Write the second row
     #csvwriter.writerow(['101','Caleb', 'Frost', '12/04/1985','505-80-2901', 'NY'])
     for empid in empID:
-
+       idx = empID.index(empid)
        csvwriter.writerow([empid, firstName[idx], lastName[idx], month[idx]+'/'+day[idx]+'/'+year[idx],'***-**-'+ssnpart3[idx], stateAbbs[idx]])
 
     
