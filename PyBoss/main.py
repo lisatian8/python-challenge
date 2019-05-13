@@ -34,9 +34,6 @@ idx5=0
 idx6=0
 counter = 0
 
-firstname = ""
-lastname = ""
-stateabv = ""
 
 us_state_abbrev = {
     'Alabama': 'AL',
@@ -183,10 +180,6 @@ with open(output_path, 'w', newline='') as csvfile:
     # Write the second row
     #csvwriter.writerow(['101','Caleb', 'Frost', '12/04/1985','505-80-2901', 'NY'])
     for empid in empID:
-       idx = empID.index(empid)
-       firstname = firstName[idx]
-       lastname = lastName[idx]
-       stateabv = stateAbbs[idx]
 
        csvwriter.writerow([empid, firstName[idx], lastName[idx], month[idx]+'/'+day[idx]+'/'+year[idx],'***-**-'+ssnpart3[idx], stateAbbs[idx]])
 
