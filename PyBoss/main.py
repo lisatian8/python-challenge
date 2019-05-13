@@ -26,26 +26,70 @@ ssnpart3=[]
 
 occurrence = 0
 
-maxLossDate = ""
-maxGain = 0
-maxGainDate = ""
-totalLoss = 0
-averageChange = 0
-totalChanges = 0
-count = 0
-currentChange = 0
-
 idx=0
 idx2=0
 idx3=0
 idx4=0
 idx5=0
 idx6=0
-ssnstring1 = ""
-ssnstring2 = ""
-ssnstring3 = ""
+counter = 0
 
-workingstring = ""
+firstname = ""
+lastname = ""
+stateabv = ""
+
+us_state_abbrev = {
+    'Alabama': 'AL',
+    'Alaska': 'AK',
+    'Arizona': 'AZ',
+    'Arkansas': 'AR',
+    'California': 'CA',
+    'Colorado': 'CO',
+    'Connecticut': 'CT',
+    'Delaware': 'DE',
+    'Florida': 'FL',
+    'Georgia': 'GA',
+    'Hawaii': 'HI',
+    'Idaho': 'ID',
+    'Illinois': 'IL',
+    'Indiana': 'IN',
+    'Iowa': 'IA',
+    'Kansas': 'KS',
+    'Kentucky': 'KY',
+    'Louisiana': 'LA',
+    'Maine': 'ME',
+    'Maryland': 'MD',
+    'Massachusetts': 'MA',
+    'Michigan': 'MI',
+    'Minnesota': 'MN',
+    'Mississippi': 'MS',
+    'Missouri': 'MO',
+    'Montana': 'MT',
+    'Nebraska': 'NE',
+    'Nevada': 'NV',
+    'New Hampshire': 'NH',
+    'New Jersey': 'NJ',
+    'New Mexico': 'NM',
+    'New York': 'NY',
+    'North Carolina': 'NC',
+    'North Dakota': 'ND',
+    'Ohio': 'OH',
+    'Oklahoma': 'OK',
+    'Oregon': 'OR',
+    'Pennsylvania': 'PA',
+    'Rhode Island': 'RI',
+    'South Carolina': 'SC',
+    'South Dakota': 'SD',
+    'Tennessee': 'TN',
+    'Texas': 'TX',
+    'Utah': 'UT',
+    'Vermont': 'VT',
+    'Virginia': 'VA',
+    'Washington': 'WA',
+    'West Virginia': 'WV',
+    'Wisconsin': 'WI',
+    'Wyoming': 'WY',
+}
 
 
 # Set path for file
@@ -98,34 +142,9 @@ with open(csvpath, newline="") as csvfile:
    
 
         state.append(row[4])
+        stateAbbs.append(us_state_abbrev[row[4]])
+        
 
-
-        #print("here")
-        #print(str(row[0]))
-        ####print(f'profigLosses: {row[1]}')
-
-     #   totalPrfitLoss = float(totalPrfitLoss) + float(row[1])
-
-        #if float(row[1]) > 0 && float(row[1]) > float(maxProfit):
-
-
-       # if count <= 0:
-       #      count = int(count) +1
-        #else:     
-        #    currentChange = float(row[1]) - float(profitLosses[int(count)-1])    
-       #     totalChanges = float(totalChanges) + float(row[1]) - float(profitLosses[int(count)-1])
-       #     changes.append(currentChange)
-
-      #      if float(currentChange) > float(maxGain):
-      #           maxGain = float(currentChange)
-      #           maxGainDate = str(row[0])
-
-      #      elif float(currentChange) < float(maxLoss):
-     #             maxLoss = float(currentChange)
-      #            maxLossDate = str(row[0])
-      #            totalLoss = totalLoss + float(row[1])
-            
-      #      count = int(count) + 1
              
 
     print(empID)
@@ -142,38 +161,33 @@ with open(csvpath, newline="") as csvfile:
     print(ssnPart1)
     print(ssnPart2)
     print(ssnpart3)
+    print(stateAbbs)
 
     
 
 
-
-    
-    #print(f"{len(dates)}")
-    ####print(f'{totalChanges}')
-
-    #totalNumOfMonths=len(dates)
-    #averageChange = float(totalChanges/float(len(totalChanges)))
-    #averageChange = float(totalLoss)/float(totalNumOfMonths)
-    #averageChange = float(totalChanges)/float(totalNumOfMonths -1)
-    
-    #### print on terminal
-    #print("Financial Analysis")
-   # print("----------------------------")
-   # print(f'Total Months: {int(totalNumOfMonths)}')
-   # print(f'Total: ${int(totalPrfitLoss)}')
-   # print(f'Average Change: ${float(averageChange)}')
-
-   # print(f'Great Increase in Profits: {str(maxGainDate)} (${round(float(maxGain))})')
-
-    #print(f'Greatest Decrease in Profits: {str(maxLossDate)} (${round(float(maxLoss))})')
-
-
-   # print(changes)
-
-
-#### write to file
 # Specify the file to write to
-#output_path = os.path.join(".", "output", "pypoll_output.txt")
+output_path = os.path.join(".", "output", "pyboss_output.csv")
 
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w', newline='') as csvfile:
 
+    # Initialize csv.writer
+    csvwriter = csv.writer(csvfile, delimiter=',')
+
+    # Write the first row (column headers)
+    csvwriter.writerow(['Emp ID', 'First Name', 'Last Name', 'DOB', 'SSN', 'State'])
+
+    # Write the second row
+    #csvwriter.writerow(['101','Caleb', 'Frost', '12/04/1985','505-80-2901', 'NY'])
+    for empid in empID:
+       idx = empID.index(empid)
+       firstname = firstName[idx]
+       lastname = lastName[idx]
+       stateabv = stateAbbs[idx]
+
+       csvwriter.writerow([empid, firstName[idx], lastName[idx], month[idx]+'/'+day[idx]+'/'+year[idx],'***-**-'+ssnpart3[idx], stateAbbs[idx]])
+
+    
+ 
 
