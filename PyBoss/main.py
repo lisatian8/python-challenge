@@ -147,21 +147,23 @@ with open(csvpath, newline="") as csvfile:
 
              
 
-    print(empID)
-    print(name)
-    print(DOB)
-    print(SSN)
-    print(state)
-    print(firstName)
-    print(lastName)
-    print(name2)
-    print(month)
-    print(day)
-    print(year)
-    print(ssnPart1)
-    print(ssnPart2)
-    print(ssnpart3)
-    print(stateAbbs)
+    #print(empID)
+    #print(name)
+   # print(DOB)
+   # print(SSN)
+    #print(state)
+   # print(firstName)
+   # print(lastName)
+   # print(name2)
+   # print(month)
+   # print(day)
+    #print(year)
+   # print(ssnPart1)
+   # print(ssnPart2)
+    #print(ssnpart3)
+    #print(stateAbbs)
+    print("appending list is done")
+    print("writing to csv file...")
 
     
 
